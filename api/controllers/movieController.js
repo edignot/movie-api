@@ -1,18 +1,10 @@
 const Movie = require('../models/movieModel')
 
-// import {
-//   fetchMoviesByTitle,
-//   fetchMovieDetails,
-//   fetchTrendingMovies,
-// } from '../utility/networkCalls.js'
-
 const networkCalls = require('../utility/networkCalls')
 
 exports.getTrendingMovies = async (req, res) => {
-  // const { page } = req.params
-  // const movies = await fetchTrendingMovies(page)
-  // res.json(movies)
-  const movies = await networkCalls.fetchTrendingMovies(1)
+  const { page } = req.params
+  const movies = await networkCalls.fetchTrendingMovies(page)
   res.json(movies)
 }
 
