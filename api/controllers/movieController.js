@@ -6,23 +6,13 @@ const Movie = require('../models/movieModel')
 //   fetchTrendingMovies,
 // } from '../utility/networkCalls.js'
 
-const fetch = require('node-fetch')
-
-const BASE_URL = 'https://api.themoviedb.org/3/'
-
-const fetchTrendingMovies = async (page) => {
-  return await fetch(
-    `${BASE_URL}trending/all/day?api_key=${process.env.TMDB_KEY}&page=${page}`,
-  )
-    .then((response) => response.json())
-    .catch((error) => console.log(error))
-}
+const networkCalls = require('../utility/networkCalls')
 
 exports.getTrendingMovies = async (req, res) => {
   // const { page } = req.params
   // const movies = await fetchTrendingMovies(page)
   // res.json(movies)
-  const movies = await fetchTrendingMovies(1)
+  const movies = await networkCalls.fetchTrendingMovies(1)
   res.json(movies)
 }
 
