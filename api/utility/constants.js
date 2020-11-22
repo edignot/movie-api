@@ -4,6 +4,11 @@ exports.API_ENDPOINTS_INFO = {
   message: `This API endpoint doesn't exist`,
   endpoints: [
     {
+      endpoint: '/api/movies/voted',
+      method: 'get',
+      details: 'returns list of movies that has any up-vote or down-vote',
+    },
+    {
       endpoint: '/api/movies/trending/:page',
       method: 'get',
       details: 'page is a number 1-1000',

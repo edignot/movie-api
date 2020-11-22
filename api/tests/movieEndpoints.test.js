@@ -38,6 +38,24 @@ describe('Movie API endpoints', () => {
     await mongoose.connection.close()
   })
 
+  test('GET | get list of movies that has any up-votes or down-votes', async (done) => {
+    await request.post(`/api/movies/3`).send({
+      id: 3,
+      title: 'title',
+      posterPath: 'poster path',
+      vote: 'up',
+    })
+
+    const movies = await Movie.find()
+
+    const res = await request.get(`/api/movies/voted`)
+
+    expect(res.status).toBe(200)
+    expect(res.body.length).toBe(movies.length)
+
+    done()
+  })
+
   test('GET | get list of trending movies from downstream API', async (done) => {
     const mockedResponse = testData.moviesMockResponseData
     const page = 1

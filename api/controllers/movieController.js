@@ -2,6 +2,11 @@ const Movie = require('../models/movieModel')
 
 const networkCalls = require('../utility/networkCalls')
 
+exports.getVotedMovies = async (req, res) => {
+  const movies = await Movie.find()
+  res.json(movies)
+}
+
 exports.getTrendingMovies = async (req, res) => {
   const { page } = req.params
   const movies = await networkCalls.fetchTrendingMovies(page)
