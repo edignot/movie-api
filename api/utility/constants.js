@@ -23,7 +23,7 @@ exports.API_ENDPOINTS_INFO = {
       method: 'post',
       body: {
         title: 'title',
-        posterPath: 'poster path',
+        poster_path: 'poster path',
         vote: 'up',
       },
       details: `vote value can be either 'down' or 'up'`,

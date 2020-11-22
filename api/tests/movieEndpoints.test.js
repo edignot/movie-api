@@ -38,31 +38,137 @@ describe('Movie API endpoints', () => {
     await mongoose.connection.close()
   })
 
-  test('GET | get list of trending movies from downstream api', async (done) => {
-    const mockedResponse = testData.trendingMoviesMockResponse
+  test('GET | get list of trending movies from downstream API', async (done) => {
+    const mockedResponse = testData.moviesMockResponseData
     const page = 1
 
     nock(constants.BASE_URL)
       .get(`/trending/all/day?api_key=${process.env.TMDB_KEY}&page=${page}`)
       .reply(200, mockedResponse)
 
-    const res = await request.get('/api/movies/trending/1')
+    const res = await request.get(`/api/movies/trending/${page}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body.page).toBe(page)
+    expect(res.body.results.length).toBe(
+      testData.moviesMockResponseData.results.length,
+    )
+    expect(res.body.total_pages).toBe(
+      testData.moviesMockResponseData.total_pages,
+    )
+    expect(res.body.total_results).toBe(
+      testData.moviesMockResponseData.total_results,
+    )
+
+    done()
+  })
+
+  test('GET | get list of movies by search input title from downstream API', async (done) => {
+    const mockedResponse = testData.moviesMockResponseData
+    const page = 1
+    const title = 'title'
+
+    nock(constants.BASE_URL)
+      .get(
+        `/search/movie?api_key=${process.env.TMDB_KEY}&language=en-US&query=${title}&page=${page}&include_adult=false`,
+      )
+      .reply(200, mockedResponse)
+
+    const res = await request.get(`/api/movies/${title}/${page}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body.page).toBe(page)
+    expect(res.body.results.length).toBe(
+      testData.moviesMockResponseData.results.length,
+    )
+    expect(res.body.total_pages).toBe(
+      testData.moviesMockResponseData.total_pages,
+    )
+    expect(res.body.total_results).toBe(
+      testData.moviesMockResponseData.total_results,
+    )
+
+    done()
+  })
+
+  test('GET | get movie details by id from downstream API', async (done) => {
+    const mockedResponse = testData.movieDetailsMockResponseData
+    const id = 1
+
+    nock(constants.BASE_URL)
+      .get(`/movie/${id}?api_key=${process.env.TMDB_KEY}&language=en-US`)
+      .reply(200, mockedResponse)
+
+    const res = await request.get(`/api/movies/${id}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body.title).toBe(testData.movieDetailsMockResponseData.title)
+
+    done()
+  })
+
+  test('POST | upVote movie that was already upVoted or downVoted before ( already saved to database )', async (done) => {
+    const { id } = await Movie.findOne()
+
+    const res = await request.post(`/api/movies/${id}`).send({
+      id: id,
+      title: 'title',
+      posterPath: 'poster path',
+      vote: 'up',
+    })
+
+    expect(res.status).toBe(200)
+    expect(res.body.up_vote).toBe(testData.votedMovies[0].up_vote + 1)
+
+    done()
+  })
+
+  test('POST | downVote movie that was already upVoted or downVoted before ( already saved to database )', async (done) => {
+    const { id } = await Movie.findOne()
+
+    const res = await request.post(`/api/movies/${id}`).send({
+      id: id,
+      title: 'title',
+      posterPath: 'poster path',
+      vote: 'down',
+    })
+
+    expect(res.status).toBe(200)
+    expect(res.body.down_vote).toBe(testData.votedMovies[0].down_vote + 1)
+
+    done()
+  })
+
+  test('POST | upVote movie that has not been upVoted or downVoted before ( not saved to database )', async (done) => {
+    const { id, up_vote } = await Movie.findOne()
+
+    const res = await request.post(`/api/movies/${id}`).send({
+      id: id,
+      vote: 'up',
+    })
 
     expect(res.status).toBe(200)
 
-    expect(res.body.page).toBe(page)
+    const updatedMovie = await Movie.findOne({ id: id })
 
-    expect(res.body.results.length).toBe(
-      testData.trendingMoviesMockResponse.results.length,
-    )
+    expect(updatedMovie.up_vote).toBe(up_vote + 1)
 
-    expect(res.body.total_pages).toBe(
-      testData.trendingMoviesMockResponse.total_pages,
-    )
+    done()
+  })
 
-    expect(res.body.total_results).toBe(
-      testData.trendingMoviesMockResponse.total_results,
-    )
+  test('POST | downVote movie that has not been upVoted or downVoted before ( not saved to database )', async (done) => {
+    const { id, down_vote } = await Movie.findOne()
+
+    const res = await request.post(`/api/movies/${id}`).send({
+      id: id,
+      vote: 'down',
+    })
+
+    expect(res.status).toBe(200)
+
+    const updatedMovie = await Movie.findOne({ id: id })
+
+    expect(updatedMovie.down_vote).toBe(down_vote + 1)
 
     done()
   })
