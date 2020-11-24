@@ -27,7 +27,17 @@ exports.getMovieDetails = async (req, res) => {
 
 exports.thumbUpOrDownMovie = async (req, res) => {
   const { id } = req.params
-  const { title, posterPath, vote } = req.body
+  const {
+    title,
+    posterPath,
+    backdropPath,
+    releaseDate,
+    originalLanguage,
+    overview,
+    mediaType,
+    name,
+    vote,
+  } = req.body
 
   const savedMovie = await Movie.findOne({ id: id })
 
@@ -38,6 +48,12 @@ exports.thumbUpOrDownMovie = async (req, res) => {
       poster_path: posterPath,
       up_vote: vote === 'up' ? 1 : 0,
       down_vote: vote === 'down' ? 1 : 0,
+      backdrop_path: backdropPath,
+      release_date: releaseDate,
+      original_language: originalLanguage,
+      overview: overview,
+      media_type: mediaType,
+      name: name,
     })
 
     newMovie
