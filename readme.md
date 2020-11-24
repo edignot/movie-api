@@ -4,7 +4,7 @@
 
 ## https://mmoovviieess.netlify.app/
 
-![Movie Search Engine](/moviesmockup.jpg)
+![Movie Search Engine](https://github.com/edignot/movie-ui/raw/master/moviesmockup.jpg)
 
 ## About:
 
