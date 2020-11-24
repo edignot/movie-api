@@ -101,6 +101,8 @@
 - run `npm i`
 - run `npm start`
 - open `http://localhost:3000`
+### Running FE Test Files
+- run `npm test`
 
 ## BE Development Instructions:
 - [clone BE repo](https://github.com/edignot/movie-api)
@@ -108,6 +110,12 @@
 - create .env file and add your MongoDB connection string `ATLAS_URI` and `TMDB_KEY` [Get your unique TMDB key here](https://developers.themoviedb.org/3)
 - run `npm start`
 - open `http://localhost:5000`
+### Running BE Test Files
+- first make sure you have MongoDB installed locally
+- run `brew services start mongodb-community`
+- run `mongo`
+- run `use movies` to switch to new movies database
+- run `npm test`
 
 ## Contributors:
 - [Edita Ignot](https://github.com/edignot)
