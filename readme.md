@@ -105,6 +105,7 @@
 ## BE Development Instructions:
 - [clone BE repo](https://github.com/edignot/movie-api)
 - run `npm i`
+- create .env file and add your MongoDB connection string `ATLAS_URI` and `TMDB_KEY` [Get your unique TMDB key here](https://developers.themoviedb.org/3)
 - run `npm start`
 - open `http://localhost:5000`
 
