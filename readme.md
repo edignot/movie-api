@@ -92,9 +92,9 @@
   - [`Modal Component`](https://github.com/edignot/movie-ui/blob/master/src/components/Modal/Modal.js)
   - [`Loading Spinner Component`](https://github.com/edignot/movie-ui/blob/master/src/components/LoadingSpinner/LoadingSpinner.js)
   #### Redux Testing
-  - [` `]()
+  - [` `]() :exclamation: Working on tests right now, tests will be finished before Nov 27th
   #### React Components Testing
-  - [` `]()
+  - [` `]() :exclamation: Working on tests right now, tests will be finished before Nov 27th
 
 ## FE Development Instructions:
 - [clone FE repo](https://github.com/edignot/movie-ui)
