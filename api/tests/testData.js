@@ -5,6 +5,12 @@ exports.votedMovies = [
     poster_path: 'poster 1',
     up_vote: 11,
     down_vote: 1,
+    backdrop_path: 'backdropPath 1',
+    release_date: 'releaseDate 1',
+    original_language: 'originalLanguage 1',
+    overview: 'overview 1',
+    media_type: 'mediaType 1',
+    name: 'name 1',
   },
   {
     id: 2,
@@ -12,6 +18,12 @@ exports.votedMovies = [
     poster_path: 'poster 2',
     up_vote: 22,
     down_vote: 2,
+    backdrop_path: 'backdropPath 2',
+    release_date: 'releaseDate 2',
+    original_language: 'originalLanguage 2',
+    overview: 'overview 2',
+    media_type: 'mediaType 2',
+    name: 'name 2',
   },
 ]
 
