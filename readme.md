@@ -4,11 +4,13 @@
 
 ## https://mmoovviieess.netlify.app/
 
-![Movie Search Engine](https://github.com/edignot/movie-ui/raw/master/moviesmockup.jpg)
+![Movie Search Engine](/moviesmockup.jpg)
 
 ## About:
 
 :movie_camera: This is a MERN full-stack application that pulls movie data from downstream[`The Movie Database API`](https://developers.themoviedb.org/3/getting-started/introduction) API, displays trending movies, and allows users to search movies by name, up-vote, and down-vote movies.
+
+:exclamation: This application has two separate GitHub repositories [`Front-End | UI`](https://github.com/edignot/movie-ui) and [`Back-End | Server`](https://github.com/edignot/movie-api), but readme file contains the same information and links for simplicity pusrposes.
 
 ## Completed MVP User Stories:
 - [x] A user should be able to search movie by title and see all results mattching the search input.
