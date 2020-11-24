@@ -102,7 +102,7 @@
 - run `npm start`
 - open `http://localhost:3000`
 ### Running FE Test Files
-- run `npm test`
+- run `npm test` :exclamation: Working on tests right now, tests will be finished before Nov 27th
 
 ## BE Development Instructions:
 - [clone BE repo](https://github.com/edignot/movie-api)
