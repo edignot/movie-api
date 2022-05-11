@@ -53,7 +53,7 @@
 - `Heroku`
 
 ## File Structure:
-### [`BE SERVER repo`](https://github.com/edignot/movie-api)  |  [Deployed API](mmoovviieess.herokuapp.com/)
+### [`BE SERVER repo`](https://github.com/edignot/movie-api)  |  [Deployed API](https://mmoovviieess.herokuapp.com/)
   #### Server
   - [`Server Setup`](https://github.com/edignot/movie-api/blob/master/server.js)
   - [`Express App Setup`](https://github.com/edignot/movie-api/blob/master/app.js)
